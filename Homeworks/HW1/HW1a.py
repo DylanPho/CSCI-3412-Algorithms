@@ -54,7 +54,7 @@ def decode_message(encoded_message, n):
     return decoded
 
 def main():
-    # user input(s)
+    # user input
     message = input("Input Message: ")
 
     # validatge shift value(n)
@@ -76,7 +76,5 @@ def main():
     decoded_message = decode_message(encoded_message, n)
     print(f"Decoded Message: {decoded_message}")
 
-    # verify if program is correct
-    print(f"Original Message: {message}")
-
+# call function 
 main()
