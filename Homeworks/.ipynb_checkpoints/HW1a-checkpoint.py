@@ -56,17 +56,14 @@ def decode_message(encoded_message, n):
 def main():
     # user input(s)
     message = input("Input Message: ")
-
-    # validatge shift value(n)
-    while True:
-        try:
-            n = int(input("Shift(n) 1-25: "))
-            if  1 <= n <= 25:
-                break
-            else:
-                print("Error: Shift value must be between 1 and 25.")
-        except ValueError:
-            print("Error: Shift value must be an interger.")
+    try:
+        n = int(input("Shift(n) 1-25: "))
+        if n < 1 or n > 25:
+            print("Error: Shift value must be between 1 and 25.")
+            return
+    except ValueError:
+        print("Error: Shift value must be an interger.")
+        return
     
     # encode message
     encoded_message = encode_message(message, n)
@@ -78,5 +75,3 @@ def main():
 
     # verify if program is correct
     print(f"Original Message: {message}")
-
-main()
