@@ -13,3 +13,5 @@ At the completion of the semester, the I will gain the following knowledge:
 2. Understand how to analyze the performance of algorithms
 3. Be able to implement and test the algorithms discussed in the class
 4. Show the correctness and efficiency of algorithms
+
+*** ***I will create two versions of my programming assignments to showcase my original thinking for my homework and project assignments and a final revised version that includes improved correctness and better efficiency of the program in terms of O(n).*** ***
