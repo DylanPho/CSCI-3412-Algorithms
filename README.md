@@ -8,7 +8,7 @@ Prereqs:
 - CSCI 2511 – Discrete Structure
 
 # Course Goals
-At the completion of the semester, the I will gain the following knowledge:
+At the completion of the semester, I will gain the following knowledge:
 1. Understand the design techniques of algorithms
 2. Understand how to analyze the performance of algorithms
 3. Be able to implement and test the algorithms discussed in the class
