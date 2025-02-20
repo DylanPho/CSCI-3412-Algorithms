@@ -1,0 +1,57 @@
+# Generate HTML table for the results
+
+html_content = """<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Algorithm Running Times</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Algorithm Running Times</h2>
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>lg n</th>
+            <th>√n</th>
+            <th>n</th>
+            <th>n lg n</th>
+            <th>n²</th>
+            <th>n³</th>
+            <th>2ⁿ</th>
+            <th>n!</th>
+        </tr>
+"""
+
+# Append each row of the results
+for time, values in zip(time_limits.keys(), zip(*results.values())):
+    html_content += f"        <tr><td>{time}</td>"
+    for value in values:
+        html_content += f"<td>{value}</td>"
+    html_content += "</tr>\n"
+
+html_content += """    </table>
+</body>
+</html>
+"""
+
+# Save to an HTML file
+file_path = "/mnt/data/algorithm_running_times.html"
+with open(file_path, "w") as file:
+    file.write(html_content)
+
+# Provide the downloadable file
+file_path
