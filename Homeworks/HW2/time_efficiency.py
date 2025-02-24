@@ -8,12 +8,17 @@ Description: This program reads numbers from a file and sorts them using Inserti
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
-import pandas as pd
-import matplotlib.pyplot as plt
+import os  # To manage file paths
+
+# ---------------- Define Dataset Paths ----------------
+DATA_DIR = "/Users/dylanpho/Library/CloudStorage/OneDrive-TheUniversityofColoradoDenver/CU Denver/2024-2025/Spring 2025/CSCI 3412-Algorithms/Homeworks/HW2"
+
+fileNames = ["rand1000.txt", "rand10000.txt", "rand100000.txt", "rand250000.txt", "rand500000.txt", "rand1000000.txt"]
+file_paths = {name: os.path.join(DATA_DIR, name) for name in fileNames}  # Absolute paths
 
 # ---------------- Sorting Algorithms ----------------
 def insertion_sort(arr):
-    """Insertion Sort Algorithm (O(n^2) time complexity)"""
+    """Insertion Sort Algorithm (O(n^2) complexity)"""
     arr = arr.copy()
     for i in range(1, len(arr)):
         key = arr[i]
@@ -25,7 +30,7 @@ def insertion_sort(arr):
     return arr
 
 def merge_sort(arr):
-    """Merge Sort Algorithm (O(n log n) time complexity)"""
+    """Merge Sort Algorithm (O(n log n) complexity)"""
     if len(arr) > 1:
         mid = len(arr) // 2
         left_half = arr[:mid]
@@ -60,6 +65,10 @@ def merge_sort(arr):
 # ---------------- Helper Functions ----------------
 def read_numbers_from_file(filename):
     """Reads numbers from a file and returns them as a list of integers"""
+    if not os.path.isfile(filename):  # Check if file exists
+        print(f"Error: File '{filename}' does not exist!")
+        return []
+
     with open(filename, 'r') as file:
         return [int(num) for line in file for num in line.split()]
 
@@ -71,25 +80,26 @@ def time_efficiency(func, arr):
     return end_time - start_time
 
 # ---------------- Main Execution ----------------
-fileNames = ["rand1000.txt", "rand10000.txt", "rand100000.txt", "rand250000.txt", "rand500000.txt", "rand1000000.txt"]
-file_paths = {name: f"/mnt/data/{name}" for name in fileNames}
-
 # Results storage
 dataset_sizes = []
 insertion_times = []
 merge_times = []
 
-# Run sorting tests using the loop structure from the prompt
-for name in fileNames:
-    path = file_paths[name]
+# Run sorting tests using the correct file paths
+for name, path in file_paths.items():
     numbers = read_numbers_from_file(path)
+
+    if not numbers:  # Skip if the file couldn't be read
+        continue
+
     dataset_sizes.append(len(numbers))
 
-    # Measure time for Insertion Sort (limited to 100,000 elements)
-    if len(numbers) <= 100000:
-        insertion_time = time_efficiency(insertion_sort, numbers)
-    else:
-        insertion_time = None  # Too slow for larger datasets
+    # Warn if processing a large dataset with Insertion Sort
+    if len(numbers) >= 100000:
+        print(f"⚠️ WARNING: Running Insertion Sort on {len(numbers)} elements may take a VERY long time!")
+
+    # Measure time for Insertion Sort (now running on all dataset sizes)
+    insertion_time = time_efficiency(insertion_sort, numbers)
 
     # Measure time for Merge Sort
     merge_time = time_efficiency(merge_sort, numbers)
@@ -104,18 +114,15 @@ df_results = pd.DataFrame({
     "Merge Sort Time (s)": merge_times,
 })
 
-# Display results in a table
+# Display results
 print(df_results)
 
 # ---------------- Plot Results ----------------
 plt.figure(figsize=(10, 6))
 plt.plot(dataset_sizes, merge_times, label="Merge Sort", marker='o', linestyle='-')
 
-# Only plot Insertion Sort times where available
-insertion_sizes = [size for size, time in zip(dataset_sizes, insertion_times) if time is not None]
-insertion_times_filtered = [time for time in insertion_times if time is not None]
-
-plt.plot(insertion_sizes, insertion_times_filtered, label="Insertion Sort", marker='s', linestyle='--')
+# Plot Insertion Sort times where available
+plt.plot(dataset_sizes, insertion_times, label="Insertion Sort", marker='s', linestyle='--')
 
 plt.xlabel("Number of Elements")
 plt.ylabel("Execution Time (seconds)")
