@@ -1,57 +1,128 @@
-# Generate HTML table for the results
-
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Algorithm Running Times</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison of Running Times</title>
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
+        /* Basic styling for the table */
+        body { font-family: Arial, sans-serif; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid black; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
     </style>
 </head>
 <body>
-    <h2>Algorithm Running Times</h2>
+    <h2>Comparison of Running Times</h2>
+    
+    <!-- Table to display computed maximum problem sizes for different time complexities -->
     <table>
         <tr>
-            <th>Time</th>
-            <th>lg n</th>
-            <th>√n</th>
-            <th>n</th>
-            <th>n lg n</th>
-            <th>n²</th>
-            <th>n³</th>
-            <th>2ⁿ</th>
-            <th>n!</th>
+            <th>f(n)</th>
+            <th>1 second</th>
+            <th>1 minute</th>
+            <th>1 hour</th>
+            <th>1 day</th>
+            <th>1 month</th>
+            <th>1 year</th>
+            <th>1 century</th>
         </tr>
-"""
-
-# Append each row of the results
-for time, values in zip(time_limits.keys(), zip(*results.values())):
-    html_content += f"        <tr><td>{time}</td>"
-    for value in values:
-        html_content += f"<td>{value}</td>"
-    html_content += "</tr>\n"
-
-html_content += """    </table>
+        
+        <!-- Logarithmic complexity row -->
+        <tr>
+            <td>lg n</td>
+            <td>10<sup>6</sup></td>
+            <td>10<sup>18</sup></td>
+            <td>10<sup>36</sup></td>
+            <td>10<sup>72</sup></td>
+            <td>10<sup>2160</sup></td>
+            <td>10<sup>25920</sup></td>
+            <td>10<sup>315360</sup></td>
+        </tr>
+        
+        <!-- Square root complexity row -->
+        <tr>
+            <td>&radic;n</td>
+            <td>10<sup>12</sup></td>
+            <td>10<sup>24</sup></td>
+            <td>10<sup>48</sup></td>
+            <td>10<sup>96</sup></td>
+            <td>10<sup>2880</sup></td>
+            <td>10<sup>34560</sup></td>
+            <td>10<sup>420480</sup></td>
+        </tr>
+        
+        <!-- Linear complexity row -->
+        <tr>
+            <td>n</td>
+            <td>10<sup>6</sup></td>
+            <td>6 x 10<sup>7</sup></td>
+            <td>3.6 x 10<sup>9</sup></td>
+            <td>8.64 x 10<sup>10</sup></td>
+            <td>2.592 x 10<sup>12</sup></td>
+            <td>3.1536 x 10<sup>13</sup></td>
+            <td>3.1536 x 10<sup>15</sup></td>
+        </tr>
+        
+        <!-- Linearithmic complexity row -->
+        <tr>
+            <td>n lg n</td>
+            <td>5 x 10<sup>4</sup></td>
+            <td>3 x 10<sup>6</sup></td>
+            <td>1.8 x 10<sup>8</sup></td>
+            <td>4.32 x 10<sup>9</sup></td>
+            <td>1.296 x 10<sup>11</sup></td>
+            <td>1.5768 x 10<sup>12</sup></td>
+            <td>1.5768 x 10<sup>14</sup></td>
+        </tr>
+        
+        <!-- Quadratic complexity row -->
+        <tr>
+            <td>n<sup>2</sup></td>
+            <td>10<sup>3</sup></td>
+            <td>7.7 x 10<sup>4</sup></td>
+            <td>6 x 10<sup>5</sup></td>
+            <td>9.3 x 10<sup>6</sup></td>
+            <td>1.6 x 10<sup>8</sup></td>
+            <td>5.6 x 10<sup>8</sup></td>
+            <td>5.6 x 10<sup>9</sup></td>
+        </tr>
+        
+        <!-- Cubic complexity row -->
+        <tr>
+            <td>n<sup>3</sup></td>
+            <td>10<sup>2</sup></td>
+            <td>3.9 x 10<sup>3</sup></td>
+            <td>1.5 x 10<sup>4</sup></td>
+            <td>2.1 x 10<sup>5</sup></td>
+            <td>5.4 x 10<sup>6</sup></td>
+            <td>8.2 x 10<sup>6</sup></td>
+            <td>1.8 x 10<sup>7</sup></td>
+        </tr>
+        
+        <!-- Exponential complexity row -->
+        <tr>
+            <td>2<sup>n</sup></td>
+            <td>19</td>
+            <td>25</td>
+            <td>31</td>
+            <td>36</td>
+            <td>41</td>
+            <td>45</td>
+            <td>50</td>
+        </tr>
+        
+        <!-- Factorial complexity row -->
+        <tr>
+            <td>n!</td>
+            <td>11</td>
+            <td>13</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+        </tr>
+    </table>
 </body>
 </html>
-"""
-
-# Save to an HTML file
-file_path = "/mnt/data/algorithm_running_times.html"
-with open(file_path, "w") as file:
-    file.write(html_content)
-
-# Provide the downloadable file
-file_path
