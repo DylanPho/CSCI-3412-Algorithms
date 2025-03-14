@@ -119,8 +119,7 @@ Let `n/3^k = 1`, so `k = log_3(n)`, and `T(1) = 0(1)`:
 <mark>**Final result: $k = \theta(logn)$ is the largest value such that the modified merge sort remains in $\theta (nlogn)$.**<mark>
 
 ## Q 3 -2) Problem2-1 (d)
-
-### a) (2 points) List 3 recursion types w.r.t. the way of diminishing input size for each recursion to reach the termination of recursions.  In addition, please provide a high-level description of each type and specific algorithms that fall into each type.  The answers to this question can be found in the class lecture notes.  You may find other kinds of 3 types of recursions on the Internet, but this one specifically asks about the ones we discussed in class.
+### Now, using the idea of combining merge sort with insertion sort, we will answer problem 2-1 (d) using quicksort and optimized bubble sort instead.  [15 points]
 
 Test Ouput:
 ```
@@ -167,24 +166,32 @@ Optimal k value: 9, Time: 1.30085 seconds
 
 # <mark>Extra Credit
 
-## a) (2 points) List 3 recursion types w.r.t. the way of diminishing input size for each recursion to reach the termination of recursions.  In addition, please provide a high-level description of each type and specific algorithms that fall into each type.  The answers to this question can be found in the class lecture notes.  You may find other kinds of 3 types of recursions on the Internet, but this one specifically asks about the ones we discussed in class.
+### a) (2 points) List 3 recursion types w.r.t. the way of diminishing input size for each recursion to reach the termination of recursions.  In addition, please provide a high-level description of each type and specific algorithms that fall into each type.  The answers to this question can be found in the class lecture notes.  You may find other kinds of 3 types of recursions on the Internet, but this one specifically asks about the ones we discussed in class.
 
 ### 3 recursion types based on input reduction:
 
-1. **Linear Reduction Recursion**
+1. **Constant Fraction Reduction**
 
-   - **Description**: Input size decreases by **a fixed amount** in each recursive call.
-   - **Example**: Factorial function `factorial(n) = n * factorial(n-1)`
+   - **Description**: The input size is reduced by a **fixed fraction** in each recursive call.
+   - **Example**: 
+     - **Merge Sort** → Divides the array into two **equal halves** `(T(n) = 2T(n/2) + O(n))`
+     - **Binary Search** → Reduces search space by **half** `(T(n) = T(n/2) + O(1))`
+     - **Matrix Multiplication** → Breaks matrices into **submatrices** of size `n/2`
   
-2. **Half Reduction Recursion**
+2. **Variable (Random) Fraction Reduction**
 
-   - **Description**: Input size decreases **by half** in each recursive call.
-   - **Example**: Binary Search `binary_search(arr, left, right)`
+   - **Description**: The input size is reduced by a **randomly determined** fraction in each recursive call.
+   - **Example**: 
+     - **Quick Sort** → Partitions the array into **unequal parts**, depending on the pivot `(T(n) = T(k) + T(n-k-1) + O(n))`
+     - **K-th Element Search** (Median of Medians) → Selects a **random pivot**, reducing input unpredictably.
 
-3. Variable Reduction Recursion
+3. **Constant Linear Reduction**
 
-   - **Description**: Input size decreases **by a non-fixed pattern**, usually depending on problem constraints.
-   - **Example**: The **Merge Sort** algorithm `(merge_sort(arr, left, mid) + merge_sort(arr, mid+1, right))`.
+   - **Description**: The input size decreases by a **fixed constant** in each recursive call (e.g., `n → n-1`).
+   - **Example**: 
+     - **Simple Recursive Function**: `F(n) = F(n-1) + 1`
+     - **Factorial Computation**: `F(n) = F(n-1) * n`
+     - **Fibonacci Sequence**: `F(n) = F(n-1) + F(n-2)`
 
 ## b) (8 points) Structural Recursion - myFind()
 
@@ -197,3 +204,16 @@ Optimal k value: 9, Time: 1.30085 seconds
 - At the end of the command, it also returns the total file size of those files found in bytes.  The total file size should be the summation of the file sizes of the regular files only.  That means that you should exclude sub-directories from computing the total file size.   
 - You should check the mode of files. If it is other than the regular file type (stat.S_ISREG(mode)), such as socket, symbolic link, directory, ..., do NOT add them to the total file size.
 
+output:
+```
+/usr/bin/mkfifo 101360 bytes
+/usr/bin/cap_mkdb 118096 bytes
+/usr/bin/cvmkdir 270 bytes
+/usr/bin/mkbom 135680 bytes
+/usr/bin/cvmkfile 270 bytes
+/usr/bin/mklocale 168480 bytes
+/usr/bin/mktemp 101744 bytes
+Total file size: 625900 bytes
+```
+
+![test output image](./EC.png)
