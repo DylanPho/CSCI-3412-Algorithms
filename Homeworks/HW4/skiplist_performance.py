@@ -1,6 +1,6 @@
 '''
 Name: Dylan Phoutthavong
-Date: March 8th, 2025
+Date: April 8th, 2025
 Course: CSCI 3412
 Task(s): Implement a complete Skip List class in Python, including insert and search functionalities.
 
@@ -15,12 +15,11 @@ Task(s): Implement a complete Skip List class in Python, including insert and se
         5. Repeat the same search process using a binary search on a sorted static list (i.e., the same dataset inserted into the skip list in Step 3, but in a sorted static array).
 
         - Repeat steps 1 - 5 at least 10 times.
-        
+
         - Display and compare the average time results of the two approaches:
 
             - Skip List search vs. Binary Search on a sorted list.
 '''
-
 import random
 import time
 import bisect

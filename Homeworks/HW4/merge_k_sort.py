@@ -1,6 +1,6 @@
 '''
 Name: Dylan Phoutthavong
-Date: March 7th, 2025
+Date: April 7th, 2025
 Course: CSCI 3412
 Task(s): Write a Python code to implement your algorithm described above with the following data:
             1. Read the integers from rand1000000.txt of HW2. Split it into 100 rand10000 lists.  Feel free to use your file naming convention of those sub-lists for easier save and read operations
