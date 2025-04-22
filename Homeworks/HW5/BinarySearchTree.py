@@ -148,6 +148,14 @@ class Node(object):
         left_count = self.leftChild.count_nodes() if self.leftChild else 0
         right_count = self.rightChild.count_nodes() if self.rightChild else 0
         return 1 + left_count + right_count
+    
+    def descending_generator(self):
+        ''' Generator-based descending order traversal '''
+        if self.rightChild:
+            yield from self.rightChild.descending_order()
+        yield self.data
+        if self.leftChild:
+            yield from self.leftChild.descending_order()
 
 class Tree(object):
     def __init__(self):
@@ -193,6 +201,9 @@ class Tree(object):
     
     def count_nodes(self):
         return self.root.count_nodes() if self.root else 0
+    
+    def descending_order(self):
+        return self.root.descending_generator() if self.root else iter([])
 
 if __name__ == '__main__':
     tree = Tree()
