@@ -1,5 +1,7 @@
 from BinarySearchTree import Tree
 
+TOP_N = 100
+
 def load_numbers(filename):
     numbers = []
     with open(filename, "r") as f:
