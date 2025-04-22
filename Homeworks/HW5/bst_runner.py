@@ -17,6 +17,7 @@ Task(s): 1. Download or copy the BST implementation from the third or fourth lin
 '''
 
 import time
+import math
 from BinarySearchTree import Tree
 
 def load_numbers(filename):
@@ -35,7 +36,6 @@ def main():
     numbers = load_numbers(filename)
 
     print(f"\nInserting {len(numbers)} values into BST...")
-
     tree = Tree()
 
     start_insert = time.time()
@@ -46,13 +46,20 @@ def main():
     insert_time = end_insert - start_insert
     print(f"Insertion completed in {insert_time:.4f} seconds.")
 
-    print("\nPerforming inorder traversal...")
-    start_traverse = time.time()
-    tree.inorder()
-    end_traverse = time.time()
+    # Get height and count
+    total_nodes = tree.count_nodes()
+    height = tree.get_height()
+    optimal_height = int(math.log2(total_nodes)) + 1
 
-    traverse_time = end_traverse - start_traverse
-    print(f"\nTraversal completed in {traverse_time:.4f} seconds.")
+    print(f"\nTree Height: {height}")
+    print(f"Total Nodes: {total_nodes}")
+    print(f"Optimal Height (balanced tree): {optimal_height}")
+
+    # Heuristic balance check
+    if height <= 2 * optimal_height:
+        print("Balance Status: Likely Balanced")
+    else:
+        print("Balance Status: Likely Unbalanced / Skewed")
 
 if __name__ == "__main__":
     main()
