@@ -137,6 +137,18 @@ class Node(object):
                 self.rightChild.postorder()
             print(str(self.data), end = ' ')
 
+    def get_height (self):
+        ''' Get height of the tree '''
+        left_height = self.leftChild.get_height() if self.leftChild else 0
+        right_height = self.rightChild.get_height() if self.rightChild else 0
+        return 1 + max(left_height, right_height)
+    
+    def count_nodes (self):
+        ''' Count all nodes in the tree '''
+        left_count = self.leftChild.count_nodes() if self.leftChild else 0
+        right_count = self.rightChild.count_nodes() if self.rightChild else 0
+        return 1 + left_count + right_count
+
 class Tree(object):
     def __init__(self):
         self.root = None
@@ -175,6 +187,12 @@ class Tree(object):
         if self.root is not None:
             print('Postorder: ')
             self.root.postorder()
+
+    def get_height(self):
+        return self.root.get_height() if self.root else 0
+    
+    def count_nodes(self):
+        return self.root.count_nodes() if self.root else 0
 
 if __name__ == '__main__':
     tree = Tree()
