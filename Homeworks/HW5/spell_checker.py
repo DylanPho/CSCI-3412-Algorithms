@@ -68,32 +68,32 @@ def load_misspelled_words(filename):
 def get_suggestions(word, dictionary, top_n):
     suggestions = []
     for dict_word in dictionary:
-        # Only check words close in length for efficiency
         if abs(len(dict_word) - len(word)) < 4:
             dist = edit_distance(word, dict_word)
             if dist <= MAX_EDIT_DISTANCE and len(dict_word) >= MIN_WORD_LENGTH:
                 suggestions.append((dict_word, dist, dictionary[dict_word]))
-    # Sort: first by edit distance, then by descending frequency
     suggestions.sort(key=lambda x: (x[1], -x[2]))
     return suggestions[:top_n]
 
 # -------------------------------
-# Main Function
+# Main Function (writes to file)
 # -------------------------------
 def main():
     dictionary = build_dictionary("dictionary.txt")
-    print(f"Dictionary size: {len(dictionary)}")
-    print("Please enter the file to check for spelling: misspelled.txt")
-
     misspelled_words = load_misspelled_words("misspelled.txt")
     checked = set()
 
-    for word in misspelled_words:
-        if word in dictionary or word in checked:
-            continue
-        checked.add(word)
-        suggestions = get_suggestions(word, dictionary, TOP_N)
-        print(f"\n- Suggestions for '{word}': {suggestions}")
+    with open("spell_output.txt", "w") as out:
+        out.write(f"Dictionary size: {len(dictionary)}\n")
+        out.write("Please enter the file to check for spelling: misspelled.txt\n\n")
+
+        for word in misspelled_words:
+            if word in dictionary or word in checked:
+                continue
+            checked.add(word)
+            suggestions = get_suggestions(word, dictionary, TOP_N)
+            formatted = ", ".join([f"('{w}', {d}, {f})" for w, d, f in suggestions])
+            out.write(f"- Suggestions for '{word}': [{formatted}]\n")
 
 # -------------------------------
 # Run the Program
