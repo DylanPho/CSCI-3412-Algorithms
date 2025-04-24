@@ -23,16 +23,19 @@ def load_numbers(filename):
 
 def main():
     filename = "rand1000.txt"
+    output_file = "bst_descending_output.txt"
     numbers = load_numbers(filename)
 
     tree = Tree()
     for num in numbers:
         tree.insert(num)
 
-    print(f"\nDescending order traversal of {len(numbers)} values with ranking:\n")
+    with open(output_file, "w") as f:
+        f.write(f"Descending order output from BST ({len(numbers)} values)\n\n")
+        for rank, value in enumerate(tree.descending_generator(), start=1):
+            f.write(f"[{rank}] {value}\n")
 
-    for rank, value in enumerate(tree.descending_generator(), start=1):
-        print(f"[{rank}] {value}")
+    print(f"Output written to {output_file}")
 
 if __name__ == "__main__":
     main()

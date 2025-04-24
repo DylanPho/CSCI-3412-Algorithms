@@ -54,12 +54,12 @@ def main():
     tree_height = tree.get_height()
 
     with open(output_file, "w") as out:
-        out.write(f"Red-Black Tree Simulation Summary\n")
-        out.write(f"----------------------------------\n")
+        out.write("Red-Black Tree Simulation Summary\n")
+        out.write("----------------------------------\n")
         out.write(f"Inserted Nodes: {node_count}\n")
         out.write(f"Insertion Time: {insert_time:.4f} seconds\n")
-        out.write(f"Estimated Height (log₂N): {tree_height}\n\n")
-        out.write(f"Top 10 Values in Descending Order:\n\n")
+        out.write(f"Estimated Height (log2N): {tree_height}\n\n")
+        out.write("Top 10 Values in Descending Order:\n\n")
         for rank, value in enumerate(tree.descending_generator(), start=1):
             if rank > 10:
                 break

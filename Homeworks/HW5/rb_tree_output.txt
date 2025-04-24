@@ -1,8 +1,8 @@
 Red-Black Tree Simulation Summary
 ----------------------------------
 Inserted Nodes: 632439
-Insertion Time: 0.7018 seconds
-Estimated Height (log₂N): 20
+Insertion Time: 0.7456 seconds
+Estimated Height (log2N): 20
 
 Top 10 Values in Descending Order:
 

@@ -1,0 +1,25 @@
+Binary Search Tree (BST) vs. Red-Black Tree (RB Tree)
+=========================================================
+
+Summary:
+---------
+Both trees were built from the same dataset: rand1000000.txt (1 million integers).
+
+Statistics:
+------------
+
+| Metric               | BST                      | Red-Black Tree (RB Tree)        |
+|----------------------|--------------------------|----------------------------------|
+| Total Nodes          | 1000000                  | 1000000                          |
+| Tree Height          | 9742                     | 20                               |
+| Insertion Time (s)   | 21.47 seconds            | 2.18 seconds                     |
+| Balance              | Unbalanced (Skewed)      | Balanced (Logarithmic Height)   |
+| Descending Top 3     | [1] 999998               | [1] 999998                       |
+|                      | [2] 999997               | [2] 999997                       |
+|                      | [3] 999996               | [3] 999996                       |
+
+Conclusion:
+------------
+- The BST became tall and inefficient due to lack of balancing.
+- The RB Tree (simulated with SortedSet) maintained a low height and quick insertions.
+- Self-balancing trees are essential in large-scale, real-time systems.
