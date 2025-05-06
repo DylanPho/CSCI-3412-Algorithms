@@ -1,0 +1,28 @@
+Node(A with Weight 0) is added to the 'Visited' {'A'} # selected
+Relaxed: vertex B: OLD: Infinity, NEW: 4, Paths: {'B': 'A'}
+Relaxed: vertex C: OLD: Infinity, NEW: 2, Paths: {'C': 'A'}
+Relaxed: vertex E: OLD: Infinity, NEW: 7, Paths: {'E': 'A'}
+Node(C with Weight 2) is added to the 'Visited' {'A', 'C'} # selected
+Relaxed: vertex F: OLD: Infinity, NEW: 6, Paths: {'F': 'C'}
+Node(B with Weight 4) is added to the 'Visited' {'A', 'B', 'C'} # selected
+Relaxed: vertex D: OLD: Infinity, NEW: 9, Paths: {'D': 'B'}
+Node(F with Weight 6) is added to the 'Visited' {'A', 'B', 'C', 'F'} # selected
+Relaxed: vertex H: OLD: Infinity, NEW: 7, Paths: {'H': 'F'}
+Node(H with Weight 7) is added to the 'Visited' {'A', 'B', 'C', 'F', 'H'} # selected
+No unvisited outgoing edges from the node, H
+Node(E with Weight 7) is added to the 'Visited' {'A', 'B', 'C', 'E', 'F', 'H'} # selected
+Relaxed: vertex G: OLD: Infinity, NEW: 9, Paths: {'G': 'E'}
+Node(G with Weight 9) is added to the 'Visited' {'A', 'B', 'C', 'E', 'F', 'G', 'H'} # selected
+No edge relaxation is needed for node, G
+Node(D with Weight 9) is added to the 'Visited' {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'} # selected
+No unvisited outgoing edges from the node, D
+
+Final shortest distances from source node:
+A: 0
+B: 4
+C: 2
+D: 9
+E: 7
+F: 6
+G: 9
+H: 7

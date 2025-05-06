@@ -1,0 +1,54 @@
+Dijkstra Output:
+
+Distance from Denver to 'Atlanta': 2221 with path(Denver to Dallas to Atlanta)
+Distance from Denver to 'Boston': 2839 with path(Denver to Boston)
+Distance from Denver to 'Chicago': 1474 with path(Denver to Chicago)
+Distance from Denver to 'Dallas': 1064 with path(Denver to Dallas)
+Distance from Denver to 'Denver': 0 with path(Denver)
+Distance from Denver to 'Houston': 1426 with path(Denver to Dallas to Houston)
+Distance from Denver to 'LA': 1335 with path(Denver to LA)
+Distance from Denver to 'Memphis': 1411 with path(Denver to Memphis)
+Distance from Denver to 'Miami': 3194 with path(Denver to Dallas to Atlanta to Miami)
+Distance from Denver to 'NY': 2619 with path(Denver to Chicago to NY)
+Distance from Denver to 'Philadelphia': 2594 with path(Denver to Washington to Philadelphia)
+Distance from Denver to 'Phoenix': 2486 with path(Denver to Dallas to Phoenix)
+Distance from Denver to 'SF': 1894 with path(Denver to LA to SF)
+Distance from Denver to 'Seattle': 2879 with path(Denver to LA to Seattle)
+Distance from Denver to 'Washington': 2395 with path(Denver to Washington)
+
+Prim's MST Output:
+
+Denver is selected. Distance: 0
+Dallas is selected. Distance: 1064
+Houston is selected. Distance: 362
+Memphis is selected. Distance: 675
+Atlanta is selected. Distance: 1157
+Miami is selected. Distance: 973
+LA is selected. Distance: 1335
+SF is selected. Distance: 559
+Seattle is selected. Distance: 1092
+Philadelphia is selected. Distance: 1413
+Washington is selected. Distance: 199
+Phoenix is selected. Distance: 1422
+Chicago is selected. Distance: 1474
+NY is selected. Distance: 1145
+Boston is selected. Distance: 306
+
+                Edge                            Weight
+
+         Denver              LA ................1335
+         Dallas         Phoenix ................1422
+         Dallas         Atlanta ................1157
+         Denver          Dallas ................1064
+         Dallas         Houston .................362
+        Memphis    Philadelphia ................1413
+             LA              SF .................559
+             NY          Boston .................306
+             SF         Seattle ................1092
+   Philadelphia      Washington .................199
+         Dallas         Memphis .................675
+        Atlanta           Miami .................973
+        Chicago              NY ................1145
+         Denver         Chicago ................1474
+
+Total MST:       13176
